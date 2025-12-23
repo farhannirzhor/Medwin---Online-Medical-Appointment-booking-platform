@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Patient Dashboard";
+}
+
+@model List<Appointment>
+
+@{
+    ViewData["Title"] = "Patient Dashboard";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<h2 class="mb-4">My Appointments</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No appointments found.
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Problem</th>
+                <th>Prescription</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appt in Model)
+            {
+                <tr>
+                    <td>@appt.Doctor.FullName</td>
+                    <td>@appt.AppointmentDate.ToShortDateString()</td>
+                    <td>@appt.AppointmentTime</td>
+                    <td>
+                        <span class="badge badge-warning">
+                            @appt.Status
+                        </span>
+                    </td>
+                    <td>@appt.ProblemDescription</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(appt.PrescriptionFilePath))
+                        {
+                            <a href="@appt.PrescriptionFilePath"
+                               class="btn btn-primary btn-sm"
+                               target="_blank">
+                                View / Download
+                            </a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

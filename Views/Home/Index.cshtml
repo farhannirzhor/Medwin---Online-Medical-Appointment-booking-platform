@@ -1,0 +1,593 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+
+   
+<!-- appointment section start -->
+<div class="appointment_section">
+    <div class="container">
+        <div class="appointment_box">
+
+            <!-- ✅ APPOINTMENT TITLE (YOU WERE MISSING THIS) -->
+            <h1 class="appointment_taital text-center mb-4">
+                Book <span style="color:#0cb7d6;">Appointment</span>
+            </h1>
+
+            <!-- ✅ APPOINTMENT FORM -->
+            <form asp-controller="Appointment" asp-action="Book" method="post">
+
+                <!-- TEMP PatientId (until login system) -->
+                <input type="hidden" name="PatientId" value="1" />
+
+                <div class="appointment_section_2">
+
+                    <div class="row">
+                        <!-- Patient Name -->
+                        <div class="col-md-4">
+                            <p class="doctorname_text">Patient Name</p>
+                            <input type="text"
+                                   class="email_text"
+                                   name="PatientName"
+                                   required />
+                        </div>
+                        <div class="col-md-4">
+                            <p class="doctorname_text">Email</p>
+                            <input type="email"
+                                   class="email_text"
+                                   name="PatientEmail"
+                                   required />
+                        </div>
+
+
+                        <!-- Doctor -->
+                        <div class="col-md-4">
+                            <p class="doctorname_text">Doctor's Name</p>
+                            <select class="form-control"
+                                    name="DoctorId"
+                                    required>
+                                <option value="">Select Doctor</option>
+                                <option value="1">Dr. Humour (Cardiology)</option>
+                                <option value="2">Dr. Jenni (Neurology)</option>
+                            </select>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="col-md-4">
+                            <p class="doctorname_text">Choose Date</p>
+                            <input type="date"
+                                   class="form-control"
+                                   name="AppointmentDate"
+                                   required />
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <!-- Time -->
+                        <div class="col-md-4">
+                            <p class="doctorname_text">Choose Time</p>
+                            <select class="form-control"
+                                    name="AppointmentTime"
+                                    required>
+
+                                <option value="">Select Time</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Problem -->
+                        <div class="col-md-8">
+                            <p class="doctorname_text">Describe Your Problem</p>
+                            <textarea class="form-control"
+                                      name="ProblemDescription"
+                                      rows="4"
+                                      required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+
+                            <div id="recommendedDoctorBox"
+                                 class="alert alert-info text-center d-none">
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-info d-block mx-auto mb-3"
+                                    onclick="recommendDoctor()">
+                                Get Recommended Doctor
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-primary d-block mx-auto">
+                                Book Appointment
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- appointment section end -->
+
+
+<!-- about section start -->
+<div class="about_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="about_taital">About Our Medical Center</h1>
+                <p class="about_text">
+                    Our Online Medical Appointment Booking System is designed to simplify healthcare access by
+                    allowing patients to book doctor appointments online, view doctor availability, and manage
+                    appointments efficiently. Our goal is to reduce waiting time and improve patient experience
+                    through digital healthcare solutions.
+                </p>
+                <div class="about_bt"><a href="#">Read More</a></div>
+            </div>
+            <div class="col-md-6">
+                <div class="about_img"><img src="/images/about-img.png"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about section end -->
+<!-- treatment section start -->
+<div class="treatment_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="treatment_taital">Hospital Treatment</h1>
+            </div>
+        </div>
+        <div class="treatment_section_2">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="number_text">01</h1>
+                    <h2 class="care_text">Cardiology Care</h2>
+                    <p class="treatment_text">Comprehensive diagnosis and treatment of heart-related conditions, including heart disease, hypertension, and cardiac disorders, provided by experienced cardiology specialists.</p>
+                    <div class="readmore_bt active"><a href="#">Read More</a></div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="number_text">02</h1>
+                    <h2 class="care_text">Neurology Care</h2>
+                    <p class="treatment_text_1">Advanced medical care for brain, nerve, and spinal disorders, including migraines, epilepsy, and neurological conditions, using modern diagnostic techniques. </p>
+                    <div class="readmore_bt"><a href="#">Read More</a></div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h1 class="number_text">03</h1>
+                    <h2 class="care_text">General Medicine</h2>
+                    <p class="treatment_text_1">Primary healthcare services for common illnesses, routine check-ups, and preventive care, ensuring overall health management for patients of all ages.</p>
+                    <div class="readmore_bt"><a href="#">Read More</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- treatment section end -->
+<!-- doctores section start -->
+<div class="doctores_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="doctores_taital">Our doctores</h1>
+            </div>
+        </div>
+        <div class="doctores_section_2">
+            <div id="my_slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-1.png"></div>
+                                    <h4 class="humour_text">Humour <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-2.png"></div>
+                                    <h4 class="humour_text">Jenni <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-3.png"></div>
+                                    <h4 class="humour_text">Morco <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-1.png"></div>
+                                    <h4 class="humour_text">Humour <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-2.png"></div>
+                                    <h4 class="humour_text">Jenni <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-3.png"></div>
+                                    <h4 class="humour_text">Morco <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-1.png"></div>
+                                    <h4 class="humour_text">Humour <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-2.png"></div>
+                                    <h4 class="humour_text">Jenni <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="doctores_box">
+                                    <div class="image_1"><img src="/images/img-3.png"></div>
+                                    <h4 class="humour_text">Morco <br><span class="mbbs_text">MBBS</span></h4>
+                                    <div class="social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- doctores section end -->
+<!-- testimonial section start -->
+<div class="testimonial_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="testimonial_taital">Our Testimonial</h1>
+            </div>
+        </div>
+        <div class="customer_section_2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box_main">
+                        <div id="main_slider" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="customer_main">
+                                        <div class="customer_right">
+                                            <h3 class="customer_name">Rahim Ahmed <span class="quick_icon"><img src="/images/quick-icon.png"></span></h3>
+                                            <p class="default_text">Cardiology Patient,</p>
+                                            <p class="enim_text">Booking an appointment through this system was very easy and time-saving. I was able to choose my doctor, select a convenient time, and receive confirmation instantly. The overall experience was smooth and reliable.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="customer_main">
+                                        <div class="customer_right">
+                                            <h3 class="customer_name">Nusrat Jahan <span class="quick_icon"><img src="/images/quick-icon.png"></span></h3>
+                                            <p class="default_text">Neurology Patient,</p>
+                                            <p class="enim_text">This platform made healthcare access much simpler for me. I didn’t have to wait in long queues, and the appointment scheduling process was clear and well-organized. I highly recommend this system for patients.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="customer_main">
+                                        <div class="customer_right">
+                                            <h3 class="customer_name">Md. Tanvir Hossain <span class="quick_icon"><img src="/images/quick-icon.png"></span></h3>
+                                            <p class="default_text">General Medicine Patient,</p>
+                                            <p class="enim_text">The online appointment system is very user-friendly and efficient. From registration to booking, everything worked perfectly. It helped me consult a doctor quickly without any hassle.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- testimonial section end -->
+<!-- contact section start -->
+<div class="contact_section layout_padding">
+    <div class="container-fluid">
+        <div class="contact_section_2">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="contact_taital">Get In Touch</h1>
+                    <form action="">
+                        <div class="mail_section_1">
+                            <input type="text" class="mail_text" placeholder="Name" name="Name">
+                            <input type="text" class="mail_text" placeholder="Phone Number" name="Phone Number">
+                            <input type="text" class="mail_text" placeholder="Email" name="Email">
+                            <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                            <div class="send_bt"><a href="#">SEND</a></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 padding_left_15">
+                    <div class="map_main">
+                        <div class="map-responsive">
+                            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=International+University+of+Business+Agriculture+and+Technology+IUBAT+Dhaka+Bangladesh"
+                                    width="600"
+                                    height="600"
+                                    frameborder="0"
+                                    style="border:0; width:100%;"
+                                    allowfullscreen=""
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- contact section end -->
+<!-- footer section start -->
+<div class="footer_section">
+    <div class="container">
+        <div class="input_bt">
+            <input type="text" class="mail_bt" placeholder="Enter Your Email" name="Enter your email">
+            <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+        </div>
+        <div class="footer_section_2">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <h3 class="footer_taital">Address</h3>
+                    <div class="location_main">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span class="padding_15">
+                                        Dhaka, Bangladesh
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span class="padding_15">Call : +880 17XX-XXXXXX</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span class="padding_15">Email: support@medicarebd.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer_social_icon">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h3 class="footer_taital">Useful Link</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li class="active">
+                                <a href="/Home/Index">Home</a>
+                            </li>
+                            <li>
+                                <a href="/Home/About">About</a>
+                            </li>
+                            <li>
+                                <a href="/Home/Doctors">Doctors</a>
+                            </li>
+                            <li>
+                                <a href="/Home/Treatment">Treatment</a>
+                            </li>
+                            <li>
+                                <a href="/Home/Contact">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h3 class="footer_taital">Help & Support</h3>
+                    <p class="ipsum_text">
+                        For appointment assistance, technical support, or inquiries, please contact our support team.
+                        We are available 24/7 to help you.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Patient Login</h5>
+                <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control mb-2" placeholder="Email">
+                <input type="password" class="form-control mb-2" placeholder="Password">
+                <button class="btn btn-primary btn-block">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Patient Registration</h5>
+                <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <input type="text" class="form-control mb-2" placeholder="Full Name">
+                <input type="text" class="form-control mb-2" placeholder="Phone Number">
+                <input type="email" class="form-control mb-2" placeholder="Email Address">
+                <input type="password" class="form-control mb-2" placeholder="Password">
+                <input type="password" class="form-control mb-2" placeholder="Confirm Password">
+                <button class="btn btn-success btn-block">Register</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- footer section end -->
+<!-- copyright section start -->
+<div class="copyright_section">
+    <div class="container">
+        <p class="copyright_text">2024 All Rights Reserved. Design by Farhan Hassin & Team</p>
+    </div>
+</div>
+<!-- copyright section end -->
+@section Scripts {
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap'
+        });
+
+        $('#timepicker').timepicker({
+            uiLibrary: 'bootstrap'
+        });
+
+        function recommendDoctor() {
+            const problem = document.querySelector('[name="ProblemDescription"]').value.toLowerCase();
+
+        if (!problem) {
+            alert("Please describe your problem first.");
+            return;
+        }
+
+        if (problem.includes("heart")) {
+            alert("Recommended Doctor: Cardiologist");
+        } else if (problem.includes("brain") || problem.includes("head")) {
+            alert("Recommended Doctor: Neurologist");
+        } else {
+            alert("Recommended Doctor: General Physician");
+        }
+
+        }
+
+    </script>
+
+}
